@@ -9,15 +9,8 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        magic: ['Cinzel', 'serif'],
-                        sans: ['Inter', 'sans-serif'],
-                        journal: ['Dancing Script', 'cursive']
-                    },
-                    boxShadow: {
-                        'gold': '0 0 25px 3px rgba(245, 158, 11, 0.3)',
-                        'magical': '0 0 50px 10px rgba(139, 92, 246, 0.2)'
-                    }
+                    fontFamily: { magic: ['Cinzel', 'serif'], sans: ['Inter', 'sans-serif'], journal: ['Dancing Script', 'cursive'] },
+                    boxShadow: { 'gold': '0 0 25px 3px rgba(245, 158, 11, 0.3)', 'magical': '0 0 50px 10px rgba(139, 92, 246, 0.2)' }
                 }
             }
         }
@@ -102,28 +95,34 @@
         </main>
     </div>
 
-    <div id="diary-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity">
-        <div class="bg-gradient-to-b from-neutral-900 to-stone-950 border border-amber-900/40 rounded-2xl max-w-2xl w-full p-6 shadow-magical relative">
-            <button onclick="window.closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <h3 class="font-magic text-xl text-amber-400 mb-6 border-b border-amber-900/20 pb-2">Pen Down Your Thoughts</h3>
-            <form id="diary-form" onsubmit="window.saveDiary(event)" class="space-y-4">
-                <input type="text" id="diary-title" required placeholder="Title of Memory..." class="w-full bg-stone-900/80 border border-purple-950 rounded-xl px-4 py-3 text-gray-100 outline-none focus:border-amber-500">
+        <div id="diary-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity">
+        <div class="bg-gradient-to-b from-neutral-900 to-stone-950 border border-amber-900/40 rounded-2xl max-w-4xl w-full p-8 shadow-magical relative">
+            <button onclick="window.closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            <h3 class="font-magic text-2xl text-amber-400 mb-6 border-b border-amber-900/20 pb-4">Pen Down Your Thoughts</h3>
+            <form id="diary-form" onsubmit="window.saveDiary(event)" class="space-y-6">
+                <input type="text" id="diary-title" required placeholder="Title of Memory..." class="w-full bg-stone-900/80 border border-purple-950 rounded-xl px-5 py-4 text-lg text-gray-100 outline-none focus:border-amber-500">
+                
                 <div class="grid grid-cols-2 gap-4">
-                    <input type="date" id="diary-date" required class="bg-stone-900/80 border border-purple-950 rounded-xl px-4 py-2 text-gray-100 outline-none focus:border-amber-500">
-                    <div class="flex space-x-2 bg-stone-900/80 p-1 border border-purple-950 rounded-xl justify-around">
-                        <button type="button" onclick="window.setMood('😊', this)" class="mood-btn text-xl p-1 rounded hover:bg-purple-900/30 scale-125 border-b-2 border-amber-500">😊</button>
-                        <button type="button" onclick="window.setMood('🌟', this)" class="mood-btn text-xl p-1 rounded hover:bg-purple-900/30">🌟</button>
-                        <button type="button" onclick="window.setMood('😔', this)" class="mood-btn text-xl p-1 rounded hover:bg-purple-900/30">😔</button>
+                    <input type="date" id="diary-date" required class="bg-stone-900/80 border border-purple-950 rounded-xl px-5 py-3 text-gray-100 outline-none focus:border-amber-500">
+                    <div class="flex space-x-2 bg-stone-900/80 p-1 border border-purple-950 rounded-xl justify-around items-center">
+                        <button type="button" onclick="window.setMood('😊', this)" class="mood-btn text-2xl p-2 rounded hover:bg-purple-900/30 scale-125 border-b-2 border-amber-500">😊</button>
+                        <button type="button" onclick="window.setMood('🌟', this)" class="mood-btn text-2xl p-2 rounded hover:bg-purple-900/30">🌟</button>
+                        <button type="button" onclick="window.setMood('😔', this)" class="mood-btn text-2xl p-2 rounded hover:bg-purple-900/30">😔</button>
                     </div>
                 </div>
-                <textarea id="diary-content" required rows="5" placeholder="Dear Diary..." class="w-full bg-stone-900/80 border border-purple-950 rounded-xl px-4 py-3 text-gray-100 outline-none focus:border-amber-500"></textarea>
-                <button type="submit" id="save-btn" class="w-full bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold px-6 py-3 rounded-xl"><i class="fa-solid fa-cloud-arrow-up mr-2"></i>Save to Cloud</button>
+
+                <textarea id="diary-content" required rows="12" placeholder="Dear Diary..." class="w-full bg-stone-900/80 border border-purple-950 rounded-xl px-5 py-4 text-lg text-gray-100 outline-none focus:border-amber-500 leading-relaxed"></textarea>
+                
+                <button type="submit" id="save-btn" class="w-full bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold py-4 rounded-xl text-lg transition-transform hover:scale-[1.01]">
+                    <i class="fa-solid fa-cloud-arrow-up mr-2"></i>Save to Cloud
+                </button>
             </form>
         </div>
     </div>
 
+
     <div id="read-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity">
-        <div class="bg-[#fdfbf7] border-4 border-amber-900/30 rounded-2xl max-w-2xl w-full shadow-2xl flex flex-col relative max-h-[85vh] overflow-y-auto">
+        <div class="bg-[#fdfbf7] border-4 border-amber-900/30 rounded-2xl max-w-2xl w-full shadow-2xl flex flex-col">
             <div class="p-6 border-b border-stone-200 flex justify-between bg-[#f7f4ed]">
                 <div>
                     <span id="read-date" class="text-xs tracking-widest text-amber-800 font-bold"></span>
@@ -152,37 +151,44 @@
     </div>
 
     <script type="module">
+        // 1. Import standard Firebase tools
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getFirestore, collection, addDoc, getDocs, query, where, deleteDoc, doc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // YOUR SPECIFIC FIREBASE CONFIG
+        // =====================================================================
+        // 2. YOUR FIREBASE CONFIGURATION GOES HERE
+        // Paste the block Google gave you right below:
         const firebaseConfig = {
-            apiKey: "AIzaSyCMDS_q0gSfmQh9bSao6gPMvMs4wEcGW6k",
-            authDomain: "diary-project-43345.firebaseapp.com",
-            projectId: "diary-project-43345",
-            storageBucket: "diary-project-43345.firebasestorage.app",
-            messagingSenderId: "149930165756",
-            appId: "1:149930165756:web:be3a8478f9de2bc0479e79"
+            apiKey: "REPLACE_THIS",
+            authDomain: "REPLACE_THIS",
+            projectId: "REPLACE_THIS",
+            storageBucket: "REPLACE_THIS",
+            messagingSenderId: "REPLACE_THIS",
+            appId: "REPLACE_THIS"
         };
+        // =====================================================================
 
+        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
         const provider = new GoogleAuthProvider();
 
+        // App State Variables
         let currentUserEmail = null;
         let diariesData = [];
         let chosenMood = "😊";
         let sharingDiaryId = null;
 
-        // AUTHENTICATION
+        // --- AUTHENTICATION ---
         window.loginWithGoogle = () => {
-            signInWithPopup(auth, provider).catch(err => alert("Login failed. Make sure your GitHub URL is added to Authorized Domains in Firebase."));
+            signInWithPopup(auth, provider).catch(err => alert("Login failed: " + err.message));
         };
 
         window.logoutUser = () => signOut(auth);
 
+        // Listen for Login/Logout changes
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 currentUserEmail = user.email;
@@ -190,7 +196,7 @@
                 document.getElementById('auth-screen').classList.add('opacity-0', 'pointer-events-none');
                 document.getElementById('main-app').classList.remove('hidden');
                 setTimeout(() => document.getElementById('main-app').classList.remove('opacity-0'), 50);
-                fetchCloudDiaries(); 
+                fetchCloudDiaries(); // Get data from cloud!
             } else {
                 currentUserEmail = null;
                 document.getElementById('main-app').classList.add('hidden', 'opacity-0');
@@ -198,18 +204,21 @@
             }
         });
 
-        // DATABASE OPERATIONS
+        // --- DATABASE OPERATIONS ---
         async function fetchCloudDiaries() {
             try {
+                // Fetch diaries you own
                 const ownQuery = query(collection(db, "diaries"), where("ownerEmail", "==", currentUserEmail));
                 const ownSnapshot = await getDocs(ownQuery);
                 
+                // Fetch diaries shared with you
                 const sharedQuery = query(collection(db, "diaries"), where("sharedWith", "array-contains", currentUserEmail));
                 const sharedSnapshot = await getDocs(sharedQuery);
 
                 let fetchedDiaries = [];
                 ownSnapshot.forEach(doc => fetchedDiaries.push({ id: doc.id, ...doc.data() }));
                 sharedSnapshot.forEach(doc => {
+                    // Prevent duplicates just in case
                     if(!fetchedDiaries.find(d => d.id === doc.id)) {
                         fetchedDiaries.push({ id: doc.id, ...doc.data() });
                     }
@@ -233,14 +242,14 @@
                 mood: chosenMood,
                 content: document.getElementById('diary-content').value,
                 ownerEmail: currentUserEmail,
-                sharedWith: [],
+                sharedWith: [], // Ready to accept friends' emails
                 timestamp: Date.now()
             };
 
             try {
                 await addDoc(collection(db, "diaries"), newDiary);
                 window.closeModal();
-                fetchCloudDiaries();
+                fetchCloudDiaries(); // Refresh list
             } catch (err) {
                 alert("Error saving: " + err.message);
             }
@@ -276,7 +285,7 @@
             }
         };
 
-        // UI RENDER LOGIC
+        // --- UI RENDER LOGIC ---
         window.renderDiaries = () => {
             const grid = document.getElementById('diaries-grid');
             const searchVal = document.getElementById('searchBar').value.toLowerCase();
@@ -316,7 +325,7 @@
             });
         };
 
-        // EXPORTING UI FUNCTIONS
+        // --- EXPORTING UI FUNCTIONS TO WINDOW (Needed for Module scripts) ---
         window.triggerChestOpening = () => {
             document.getElementById('chest-interactive-box').classList.add('chest-open');
             setTimeout(() => {
@@ -375,6 +384,7 @@
             document.getElementById('share-modal').classList.add('opacity-0', 'pointer-events-none');
         };
 
+        // Set default date picker to today
         document.getElementById('diary-date').valueAsDate = new Date();
     </script>
 </body>
